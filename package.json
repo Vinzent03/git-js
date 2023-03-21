@@ -59,6 +59,12 @@
     "dist"
   ],
   "scripts": {
+    "build": "yarn build:compile && yarn build:defs",
+    "build:compile": "node scripts/build.js",
+    "build:defs": "tsc -p tsconfig.release.json --outDir dist && cp -r typings dist",
+    "build:pkg": "node scripts/package-json.js",
+    "prepublishOnly": "yarn build:pkg",
+    "test": "jest --coverage"
   },
   "publish": {
     "main": "dist/cjs/index.js",
